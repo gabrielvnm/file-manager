@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>File Manager</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --grad-start: #d9f2e0;   /* light green, top-left */
+      --grad-end:   #2f6b46;   /* darker green, bottom-right */
+      --surface: rgba(255, 255, 255, 0.55);
+      --border: rgba(0, 0, 0, 0.08);
+      --text: #14231a;
+      --muted: #405247;
+      --accent: #1f7a4d;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--grad-start) 0%, var(--grad-end) 100%);
+      background-attachment: fixed;   /* keeps gradient stable when scrolling */
+      color: var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.5;
+    }
+
+    /* ---------- Header ---------- */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      padding: 1rem 2rem;
+      background: var(--surface);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .brand {
+      font-family: "Poppins", system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      text-align: left;
+      margin: 0;
+    }
+
+    .brand .accent { color: var(--accent); }
+
+    nav {
+      font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 0.25rem 0;
+      border-bottom: 2px solid transparent;
+      transition: color 120ms ease, border-color 120ms ease;
+    }
+
+    nav a:hover {
+      color: var(--text);
+      border-bottom-color: var(--accent);
+    }
+
+    /* ---------- Main ---------- */
+    main {
+      flex: 1;
+      padding: 3rem 2rem;
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    main h2 {
+      font-family: "Poppins", system-ui, sans-serif;
+      font-size: 2rem;
+      margin: 0 0 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    main p {
+      color: var(--muted);
+      max-width: 60ch;
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      padding: 1.25rem 2rem;
+      background: var(--surface);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.875rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    footer a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    footer a:hover { color: var(--text); }
+
+    @media (max-width: 600px) {
+      header { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+      nav ul { gap: 1rem; }
+      main { padding: 2rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1 class="brand">File<span class="accent">Manager</span></h1>
+
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="#">Files</a></li>
+        <li><a href="#">Shared</a></li>
+        <li><a href="#">Recent</a></li>
+        <li><a href="#">Settings</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Your files, all in one place.</h2>
+    <p>
+      This is a placeholder for the landing page content. Later, the
+      <code>&lt;router-outlet&gt;</code> will render pages here while the header
+      and footer stay fixed.
+    </p>
+  </main>
+
+  <footer>
+    <span>© 2025 FileManager</span>
+    <span><a href="#">Privacy</a> · <a href="#">Terms</a></span>
+  </footer>
+
+</body>
+</html>

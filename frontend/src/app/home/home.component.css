@@ -1,0 +1,17 @@
+:host {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  font-family: "Poppins", system-ui, sans-serif;
+  font-size: 2rem;
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+p {
+  color: var(--muted);
+  max-width: 60ch;
+}

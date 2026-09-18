@@ -1,0 +1,64 @@
+:host {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
+}
+
+.not-found {
+  max-width: 32rem;
+  text-align: center;
+  color: var(--text);
+}
+
+.code {
+  font-family: "Poppins", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 5rem;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--accent);
+  margin: 0 0 1rem;
+}
+
+.not-found h2 {
+  font-family: "Poppins", system-ui, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.75rem;
+  color: var(--text);
+}
+
+.message {
+  color: var(--muted);
+  margin: 0 0 1.75rem;
+  line-height: 1.6;
+}
+
+.home-link {
+  display: inline-block;
+  padding: 0.6rem 1.25rem;
+  border-radius: 6px;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: filter 120ms ease, transform 120ms ease;
+}
+
+.home-link:hover {
+  filter: brightness(1.08);
+}
+
+.home-link:active {
+  transform: translateY(1px);
+}
+
+@media (max-width: 600px) {
+  :host { padding: 2rem 1.25rem; }
+  .code { font-size: 3.5rem; }
+}
