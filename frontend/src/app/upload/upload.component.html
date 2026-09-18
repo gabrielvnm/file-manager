@@ -1,0 +1,93 @@
+<section class="upload-page">
+  <h2>📤 Upload de arquivo</h2>
+  <p class="page-subtitle">Envie um arquivo e preencha as informações abaixo.</p>
+
+  <div *ngIf="successMessage" class="success-message">
+    <span class="success-icon">✅</span>
+    <span>{{ successMessage }}</span>
+    <button type="button" class="close-btn" (click)="dismissSuccess()">×</button>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message">
+    <span class="error-icon">❌</span>
+    <span>{{ errorMessage }}</span>
+  </div>
+
+  <div class="form-container">
+    <div class="form-header">
+      <h3>📝 Nova arquivo</h3>
+      <p class="form-subtitle">Preencha os campos abaixo para registrar o arquivo</p>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" #uploadForm="ngForm" class="upload-form">
+      <div class="form-group">
+        <label for="fileName">
+          <span class="label-icon">📄</span>
+          Nome do arquivo
+          <span class="required">*</span>
+        </label>
+        <input
+          id="fileName"
+          name="fileName"
+          type="text"
+          placeholder="Ex: relatorio-anual-2025.pdf"
+          [(ngModel)]="model.fileName"
+          class="form-input"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="desc">
+          <span class="label-icon">📝</span>
+          Descrição
+        </label>
+        <textarea
+          id="desc"
+          name="desc"
+          rows="3"
+          placeholder="Opcional — uma breve descrição do arquivo"
+          [(ngModel)]="model.desc"
+          class="form-input"
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="type">
+          <span class="label-icon">📊</span>
+          Tipo
+          <span class="required">*</span>
+        </label>
+        <select
+          id="type"
+          name="type"
+          [(ngModel)]="model.type"
+          class="form-select"
+          required
+        >
+          <option *ngFor="let t of fileTypes" [value]="t.value">
+            {{ t.label }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-actions">
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="submitting || uploadForm.invalid"
+        >
+          {{ submitting ? '⏳ Enviando...' : '➕ Enviar arquivo' }}
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="resetForm()"
+          [disabled]="submitting"
+        >
+          🔄 Limpar
+        </button>
+      </div>
+    </form>
+  </div>
+</section>

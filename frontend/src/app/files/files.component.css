@@ -1,0 +1,112 @@
+:host {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
+}
+
+.files-page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.files-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.files-header h2 {
+  font-family: "Poppins", system-ui, sans-serif;
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--text);
+}
+
+.files-count {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.table-wrapper {
+  background: var(--surface);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.files-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.files-table thead th {
+  text-align: left;
+  padding: 0.85rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.files-table tbody td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  vertical-align: middle;
+}
+
+.files-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.file-row:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.col-type    { width: 4rem; }
+.col-date    { width: 9rem; color: var(--muted); }
+.col-comments { width: 7rem; }
+
+.file-icon {
+  width: 1.75rem;
+  height: 1.75rem;
+  display: block;
+}
+
+.comments-badge {
+  display: inline-block;
+  min-width: 1.75rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(31, 122, 77, 0.12);
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.no-results {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  color: var(--muted);
+}
+
+@media (max-width: 600px) {
+  .files-table thead { display: none; }
+  .files-table tbody td { display: block; padding: 0.5rem 1rem; }
+  .files-table tbody td.col-type { padding-top: 1rem; }
+  .files-table tbody tr { border-bottom: 1px solid var(--border); display: block; padding-bottom: 0.75rem; }
+  .col-type, .col-date, .col-comments { width: auto; }
+}

@@ -1,0 +1,45 @@
+<section class="files-page">
+  <div class="files-header">
+    <h2>📁 Meus arquivos</h2>
+    <span class="files-count">
+      {{ files.length }} arquivo{{ files.length !== 1 ? 's' : '' }}
+    </span>
+  </div>
+
+  <div class="table-wrapper">
+    <table class="files-table">
+      <thead>
+        <tr>
+          <th class="col-type">Tipo</th>
+          <th class="col-name">Nome</th>
+          <th class="col-desc">Descrição</th>
+          <th class="col-date">Enviado em</th>
+          <th class="col-comments">Comentários</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="files.length === 0">
+          <td colspan="5" class="no-results">Nenhum arquivo encontrado</td>
+        </tr>
+        <tr *ngFor="let file of files; trackBy: trackById" class="file-row">
+            <td class="col-type">
+                <img
+                    class="file-icon"
+                    [src]="iconByType[file.type]"
+                    [alt]="file.type"
+                />
+            </td>
+          <td class="col-name">{{ file.name }}</td>
+          <td class="col-desc">
+            <span *ngIf="file.desc; else noDesc">{{ file.desc }}</span>
+            <ng-template #noDesc><span class="empty-desc">—</span></ng-template>
+          </td>
+          <td class="col-date">{{ file.uploadedAt | date:'dd/MM/yyyy' }}</td>
+          <td class="col-comments">
+            <span class="comments-badge">{{ file.comments }}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
