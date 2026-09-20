@@ -1,5 +1,10 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { Teste1Component } from './teste1/teste1.component';
@@ -11,7 +16,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FilesComponent } from './files/files.component';
 import { UploadComponent } from './upload/upload.component';
-import { FormsModule } from '@angular/forms';
+import { ArquivoDetalheComponent } from './arquivo-detalhe/arquivo-detalhe.component';
+
+registerLocaleData(localePt);
 
 @NgModule({
   declarations: [
@@ -23,14 +30,19 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     NotFoundComponent,
     FilesComponent,
-    UploadComponent
+    UploadComponent,
+    ArquivoDetalheComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    ReactiveFormsModule,
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'pt-BR' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

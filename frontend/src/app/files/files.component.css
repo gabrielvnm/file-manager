@@ -12,6 +12,8 @@
   gap: 1.5rem;
 }
 
+/* ---------- Header ---------- */
+
 .files-header {
   display: flex;
   align-items: baseline;
@@ -32,6 +34,53 @@
   color: var(--muted);
   font-size: 0.9rem;
 }
+
+/* ---------- Filters / sort ---------- */
+
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.filtros label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.filtros select {
+  padding: 0.35rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.9rem;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.filtros select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* ---------- Status messages ---------- */
+
+.feedback {
+  color: var(--muted);
+  margin: 0;
+}
+
+.erro {
+  color: #b00020;
+  margin: 0;
+}
+
+/* ---------- Table ---------- */
 
 .table-wrapper {
   background: var(--surface);
@@ -85,6 +134,10 @@
   display: block;
 }
 
+.empty-desc {
+  color: var(--muted);
+}
+
 .comments-badge {
   display: inline-block;
   min-width: 1.75rem;
@@ -103,10 +156,20 @@
   color: var(--muted);
 }
 
+/* ---------- Mobile ---------- */
+
 @media (max-width: 600px) {
   .files-table thead { display: none; }
   .files-table tbody td { display: block; padding: 0.5rem 1rem; }
   .files-table tbody td.col-type { padding-top: 1rem; }
-  .files-table tbody tr { border-bottom: 1px solid var(--border); display: block; padding-bottom: 0.75rem; }
+  .files-table tbody tr {
+    border-bottom: 1px solid var(--border);
+    display: block;
+    padding-bottom: 0.75rem;
+  }
   .col-type, .col-date, .col-comments { width: auto; }
+}
+
+.file-row {
+  cursor: pointer;
 }

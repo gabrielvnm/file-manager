@@ -2,11 +2,33 @@
   <div class="files-header">
     <h2>📁 Meus arquivos</h2>
     <span class="files-count">
-      {{ files.length }} arquivo{{ files.length !== 1 ? 's' : '' }}
+      {{ arquivosVisiveis.length }} arquivo{{ arquivosVisiveis.length !== 1 ? 's' : '' }}
     </span>
   </div>
 
-  <div class="table-wrapper">
+  <div class="filtros">
+    <label>
+      Tipo:
+      <select [(ngModel)]="filtroTipo">
+        <option value="todos">Todos</option>
+        <option value="pdf">PDF</option>
+        <option value="jpeg">JPEG</option>
+        <option value="png">PNG</option>
+      </select>
+    </label>
+    <label>
+      Ordenar por:
+      <select [(ngModel)]="ordenacao">
+        <option value="dataUpload">Data de upload</option>
+        <option value="commentCount">Nº de comentários</option>
+      </select>
+    </label>
+  </div>
+
+  <p *ngIf="loading" class="feedback">Carregando arquivos…</p>
+  <p *ngIf="error" class="erro">{{ error.message }}</p>
+
+  <div class="table-wrapper" *ngIf="!loading && !error">
     <table class="files-table">
       <thead>
         <tr>
@@ -18,25 +40,29 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngIf="files.length === 0">
+        <tr *ngIf="arquivosVisiveis.length === 0">
           <td colspan="5" class="no-results">Nenhum arquivo encontrado</td>
         </tr>
-        <tr *ngFor="let file of files; trackBy: trackById" class="file-row">
-            <td class="col-type">
-                <img
-                    class="file-icon"
-                    [src]="iconByType[file.type]"
-                    [alt]="file.type"
-                />
-            </td>
-          <td class="col-name">{{ file.name }}</td>
+        <tr
+          *ngFor="let arquivo of arquivosVisiveis; trackBy: trackById"
+          class="file-row"
+          [routerLink]="['/files', arquivo.id]"
+        >
+          <td class="col-type">
+            <img
+              class="file-icon"
+              [src]="iconByType[arquivo.tipo]"
+              [alt]="arquivo.tipo"
+            />
+          </td>
+          <td class="col-name">{{ arquivo.nome }}</td>
           <td class="col-desc">
-            <span *ngIf="file.desc; else noDesc">{{ file.desc }}</span>
+            <span *ngIf="arquivo.descricao; else noDesc">{{ arquivo.descricao }}</span>
             <ng-template #noDesc><span class="empty-desc">—</span></ng-template>
           </td>
-          <td class="col-date">{{ file.uploadedAt | date:'dd/MM/yyyy' }}</td>
+          <td class="col-date">{{ arquivo.dataUpload | date:'dd/MM/yyyy' }}</td>
           <td class="col-comments">
-            <span class="comments-badge">{{ file.comments }}</span>
+            <span class="comments-badge">{{ arquivo.commentCount }}</span>
           </td>
         </tr>
       </tbody>

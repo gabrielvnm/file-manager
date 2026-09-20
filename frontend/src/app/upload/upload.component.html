@@ -2,12 +2,6 @@
   <h2>📤 Upload de arquivo</h2>
   <p class="page-subtitle">Envie um arquivo e preencha as informações abaixo.</p>
 
-  <div *ngIf="successMessage" class="success-message">
-    <span class="success-icon">✅</span>
-    <span>{{ successMessage }}</span>
-    <button type="button" class="close-btn" (click)="dismissSuccess()">×</button>
-  </div>
-
   <div *ngIf="errorMessage" class="error-message">
     <span class="error-icon">❌</span>
     <span>{{ errorMessage }}</span>
@@ -15,67 +9,82 @@
 
   <div class="form-container">
     <div class="form-header">
-      <h3>📝 Nova arquivo</h3>
+      <h3>📝 Novo arquivo</h3>
       <p class="form-subtitle">Preencha os campos abaixo para registrar o arquivo</p>
     </div>
 
-    <form (ngSubmit)="onSubmit()" #uploadForm="ngForm" class="upload-form">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="upload-form">
       <div class="form-group">
-        <label for="fileName">
-          <span class="label-icon">📄</span>
-          Nome do arquivo
+        <label for="arquivo">
+          <span class="label-icon">📎</span>
+          Arquivo
           <span class="required">*</span>
         </label>
         <input
-          id="fileName"
-          name="fileName"
-          type="text"
-          placeholder="Ex: relatorio-anual-2025.pdf"
-          [(ngModel)]="model.fileName"
+          id="arquivo"
+          name="arquivo"
+          type="file"
+          [accept]="acceptedTypes"
+          (change)="onFileSelected($event)"
           class="form-input"
-          required
         />
+        <span class="input-hint" *ngIf="!selectedFile">
+          Formatos aceitos: PDF, PNG, JPEG.
+        </span>
+        <span class="input-hint" *ngIf="selectedFile">
+          Selecionado: {{ selectedFile.name }}
+        </span>
       </div>
 
       <div class="form-group">
-        <label for="desc">
+        <label for="nome">
+          <span class="label-icon">📄</span>
+          Nome
+          <span class="required">*</span>
+        </label>
+        <input
+          id="nome"
+          name="nome"
+          type="text"
+          formControlName="nome"
+          placeholder="Ex: relatorio-anual-2025"
+          class="form-input"
+          required
+        />
+        <span
+          class="input-hint error-hint"
+          *ngIf="form.get('nome')?.touched && form.get('nome')?.errors?.['server']"
+        >
+          {{ form.get('nome')?.errors?.['server'] }}
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label for="descricao">
           <span class="label-icon">📝</span>
           Descrição
         </label>
         <textarea
-          id="desc"
-          name="desc"
+          id="descricao"
+          name="descricao"
           rows="3"
+          formControlName="descricao"
           placeholder="Opcional — uma breve descrição do arquivo"
-          [(ngModel)]="model.desc"
           class="form-input"
         ></textarea>
-      </div>
-
-      <div class="form-group">
-        <label for="type">
-          <span class="label-icon">📊</span>
-          Tipo
-          <span class="required">*</span>
-        </label>
-        <select
-          id="type"
-          name="type"
-          [(ngModel)]="model.type"
-          class="form-select"
-          required
+        <span
+          class="input-hint error-hint"
+          *ngIf="form.get('descricao')?.touched && form.get('descricao')?.errors?.['server']"
         >
-          <option *ngFor="let t of fileTypes" [value]="t.value">
-            {{ t.label }}
-          </option>
-        </select>
+          {{ form.get('descricao')?.errors?.['server'] }}
+        </span>
       </div>
 
       <div class="form-actions">
         <button
           type="submit"
           class="btn btn-primary"
-          [disabled]="submitting || uploadForm.invalid"
+          [disabled]="submitting || form.invalid || !selectedFile"
         >
           {{ submitting ? '⏳ Enviando...' : '➕ Enviar arquivo' }}
         </button>

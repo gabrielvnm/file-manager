@@ -211,6 +211,10 @@ textarea.form-input {
   background: rgba(0, 0, 0, 0.04);
 }
 
+.error-hint {
+  color: #8a2020;
+}
+
 @media (max-width: 600px) {
   .form-container { padding: 1.25rem; }
   .form-actions { flex-direction: column; }
