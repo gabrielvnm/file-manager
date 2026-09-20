@@ -1,27 +1,28 @@
-# Frontend
+# FileManager — Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.13.
+Frontend em Angular 14 para um gerenciador de arquivos full-stack. Conversa com o backend em Express + SQLite em `http://localhost:3000`.
 
-## Development server
+## Requisitos
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Node 16 (obrigatório para o Angular 14)
+- Node Package Manager (npm)
+- Backend rodando em `http://localhost:3000`
 
-## Code scaffolding
+## Teste local
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```bash
+npm install
+npm start
+```
 
-## Build
+Após rodar os comandos, o servidor estará disponível em http://localhost:4200.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Funcionalidades
 
-## Running unit tests
+- Listagem (/files) — lista com todos os arquivos enviados, com tipo, nome, descrição, data de upload e número de comentários. Filtro por tipo e ordenação por data de upload ou número de comentários, ambos rodando no cliente frontend.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Upload (/upload) — novo arquivo com nome (obrigatório), descricao (opcional) e o próprio arquivo. O tipo é detectado no servidor.
 
-## Running end-to-end tests
+- Detalhes (/files/:id) — metadados do arquivo, download e comentários. Os detalhes de um arquivo podem ser acessados ao clicar na respectiva linha na lista de arquivos.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- Na página de Detalhes, é possível realizar exclusão e adição de comentários ao arquivo, bem como editar ou excluir o próprio arquivo. A exclusão de um arquivo também deleta os comentários relacionados.
