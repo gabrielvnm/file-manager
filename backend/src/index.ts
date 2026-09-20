@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import arquivoRoutes from './routes/arquivo.routes.js'
 import comentarioRoutes from './routes/comentario.routes.js'
+import { runSeed } from '../scripts/seed.js'
 
 const app = express()
 const port = process.env.PORT || 3000
@@ -31,6 +32,8 @@ app.use(comentarioRoutes)
 app.use((req, res) => {
   res.status(404).json({ error: `Rota ${req.method} ${req.url} não encontrada.` })
 })
+
+await runSeed()
 
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`)
