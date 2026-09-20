@@ -2,7 +2,6 @@ import { promises as fs } from 'node:fs'
 import path from 'node:path'
 import crypto from 'node:crypto'
 import { fileTypeFromFile } from 'file-type'
-import { eq } from 'drizzle-orm'
 import { db } from '../src/db/index.js'
 import { arquivos } from '../src/db/schema.js'
 
@@ -14,6 +13,12 @@ const ALLOWED: Record<string, 'pdf' | 'jpeg' | 'png'> = {
   jpg: 'jpeg',
   jpeg: 'jpeg',
   png: 'png',
+}
+
+const DESCRICOES: Record<string, string> = {
+  'Spells.pdf': 'Lista de magias para campanha de RPG.',
+  'moto.jpeg': 'Foto de moto tirada na estrada.',
+  'supla.png': 'Print do perfil do Supla.',
 }
 
 async function limpar(): Promise<void> {
@@ -53,12 +58,14 @@ async function semear(): Promise<void> {
     await fs.copyFile(origem, destino)
 
     const nome = path.parse(filename).name
+    const descricao = DESCRICOES[filename] ?? null
 
     db.insert(arquivos)
       .values({
         nome,
         caminho: path.join('uploads', novoNome),
         tipo,
+        descricao,
       })
       .run()
 
