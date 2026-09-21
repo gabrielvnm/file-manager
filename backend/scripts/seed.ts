@@ -24,6 +24,8 @@ const DESCRICOES: Record<string, string> = {
 async function limpar(): Promise<void> {
   db.delete(arquivos).run()
 
+  await fs.mkdir(UPLOAD_DIR, { recursive: true })
+
   const entries = await fs.readdir(UPLOAD_DIR)
   await Promise.all(
     entries
@@ -73,13 +75,17 @@ async function semear(): Promise<void> {
   }
 }
 
-async function main(): Promise<void> {
+export async function runSeed(): Promise<void> {
   await limpar()
   await semear()
   console.log('seed concluído')
 }
 
-main().catch(err => {
-  console.error(err)
-  process.exit(1)
-})
+const isDirectRun = process.argv[1] && import.meta.url === `file://${process.argv[1]}`
+
+if (isDirectRun) {
+  runSeed().catch(err => {
+    console.error(err)
+    process.exit(1)
+  })
+}

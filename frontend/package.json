@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "node -e \"const fs=require('fs');const f='src/environments/environment.prod.ts';const c=fs.readFileSync(f,'utf8');if(c.includes('REPLACE-ME')){console.error('\\n[BUILD FAILED] environment.prod.ts still has the placeholder URL. Update it before building.\\n');process.exit(1);}\" && ng build", 
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
