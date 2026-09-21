@@ -10,7 +10,7 @@ Outra consequência dos servidores serem desligados é que a persistência de da
 
 ## Funcionalidades
 
-A aplicação permite o upload e download de arquivos no formato JPEG, PNG e PDF, e a adição de comentários à cada arquivo. A lista de arquivos pode ser filtrada por tipo e ordenada por número de comentários ou data de postagem. Para a escala atual do projeto, não foi implementada paginação na lista de arquivos, nem controle de acesso de usuários. Há um limite de tamanho de 50mb por arquivo, e o total de uploads é limitado pela plataforma de deploy escolhida. Por essa razão, foi tomada a decisão de não implementar um limite na própria aplicação. A persistência de dados é parcial, visto que os servidores da plataforma de deploy não permitem que os dados sejam mantidos entre as sessões, mas isso é uma limitação da plataforma ASIDKUJHASIDFUH e não da aplicação.
+A aplicação permite o upload e download de arquivos no formato JPEG, PNG e PDF, e a adição de comentários à cada arquivo. A lista de arquivos pode ser filtrada por tipo e ordenada por número de comentários ou data de postagem. Para a escala atual do projeto, não foi implementada paginação na lista de arquivos, nem controle de acesso de usuários. Há um limite de tamanho de 50mb por arquivo, e o total de uploads é limitado pela plataforma de deploy escolhida. Por essa razão, foi tomada a decisão de não implementar um limite na própria aplicação. A persistência de dados é parcial, visto que os servidores da plataforma de deploy não permitem que os dados sejam mantidos entre as sessões, mas isso é uma limitação da plataforma Render e não da aplicação.
 
 
 ## Frontend
