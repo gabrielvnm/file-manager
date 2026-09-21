@@ -4,7 +4,9 @@ Aplicação Full Stack para gerenciamento e compartilhamento de arquivos, constr
 
 ## Deploy
 
-O deploy do projeto foi blablablabla
+O deploy do projeto foi realizado na plataforma Render, com a criação de um Web Service para o Backend e um Static-Page para o front. A URL do frontend pode ser acessada em https://filemanager-p701.onrender.com/. O plano gratuito do Render tira os serviços do ar após 15 minutos de inatividade, o que pode fazer com que o primeiro acesso ao site tenha diversos erros, pois front e back não são iniciados exatamente ao mesmo tempo, e podem não concluir a inicialização juntos. Caso isso aconteça, aguarde entre um e dois minutos e tente novamente. Isso deve dar tempo o suficiente para os serviços se iniciarem.
+
+Outra consequência dos servidores serem desligados é que a persistência de dados é apenas parcial, mas essa questão pode ser resolvida com um plano de deploy profissional. 
 
 ## Funcionalidades
 
